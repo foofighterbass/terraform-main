@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source  = "bpg/proxmox"
+      version = "0.66.3"
+    }
+  }
+}
+
 resource "proxmox_virtual_environment_vm" "ubuntu_cloud_base" {
   name      = "ubuntu"
   node_name = "bn-1"

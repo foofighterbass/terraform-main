@@ -7,18 +7,6 @@ terraform {
   }
 }
 
-#variable "proxmox_hostname" {}
-#variable "proxmox_username" {}
-#variable "proxmox_password" {}
-
-/* provider "proxmox" {
-  endpoint = "https://192.168.0.4:8006/"
-
-  username = "root@pam"
-  password = "proxmoxpass"
-  
-} */
-
 provider "proxmox" {
   endpoint = var.proxmox_endpoint
   username = var.proxmox_username
@@ -26,12 +14,8 @@ provider "proxmox" {
   insecure = true
 }
 
-/* terraform {
-  required_providers {
-    proxmox = {
-      source  = "bpg/proxmox"
-      version = "~> 2.19.0"
-    }
-  }
+module "cloud_vm" {
+  source  = "./modules/cloud_vm"
+  #vm_names = ["k3s-master", "k3s-worker1", "k3s-worker2"]
+  # ... другие параметры
 }
- */
