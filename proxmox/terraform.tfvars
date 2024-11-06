@@ -1,3 +1,16 @@
 proxmox_endpoint = "https://192.168.0.4:8006/"
 proxmox_username = "root@pam"
 proxmox_password = "proxmoxpass"
+vm_ipv4_adress = "192.168.0.98/24"
+vm_ipv4_gateway = "192.168.0.1"
+vm_node_name = "bn-1"
+vm_datastore_id = "local-lvm"
+vm_dns_server_1 = "192.168.0.1"
+vm_dns_server_2 = "1.1.1.1"
+vm_cpu_cores = 1
+vm_cpu_sockets = 1
+vm_memory_amount = 1024
+vm_network_device_bridge = "vmbr0"
+vm_network_device_model = "virtio"
+vm_disk_iso_file_id = "local:iso/ubuntu_cloud_image_22_04_lts.img"
+vm_disk_size = 20
