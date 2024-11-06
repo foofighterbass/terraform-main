@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"cloud_vm","Source":"./modules/cloud_vm","Dir":"modules/cloud_vm"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"base_vm","Source":"./modules/base_vm","Dir":"modules/base_vm"},{"Key":"cloud_vm","Source":"./modules/cloud_vm","Dir":"modules/cloud_vm"}]}

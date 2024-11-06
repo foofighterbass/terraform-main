@@ -12,11 +12,9 @@ resource "proxmox_virtual_environment_vm" "ubuntu_cloud_base" {
   node_name = "bn-1"
 
   initialization {
-    user_account {
-      # do not use this in production, configure your own ssh key instead!
-      username = "user"
-      password = "password"
-    }
+
+    datastore_id      = "local-lvm"
+    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
 
     dns {
       servers = ["192.168.0.1", "1.1.1.1"]

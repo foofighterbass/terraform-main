@@ -14,8 +14,8 @@ provider "proxmox" {
   insecure = true
 }
 
-module "cloud_vm" {
-  source  = "./modules/cloud_vm"
+module "base_vm" {
+  source = "./modules/base_vm"
   #vm_names = ["k3s-master", "k3s-worker1", "k3s-worker2"]
   # ... другие параметры
 }

@@ -1,0 +1,28 @@
+resource "proxmox_virtual_environment_file" "cloud_config" {
+  content_type = "snippets"
+  datastore_id = "local"
+  node_name    = "bn-1"
+
+  source_raw {
+    data = <<-EOF
+    #cloud-config
+users:
+  - default
+  - name: kim
+    passwd: "$6$kW4vfBM9kGgq4hr$TFtHW7.3jOECR9UCBuw9NrdSMJETzSVoNQGcVv2y.RqRUzWDEtYhYRkGvIpB6ml1fh/fZEVIgKbSXI9L1B6xF."
+    shell: /bin/bash
+    lock-passwd: false
+    ssh_pwauth: True
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+runcmd:
+    - echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+    - echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+    - echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+    - sudo rm -rf /etc/ssh/sshd_config.d/
+    - sudo systemctl restart sshd
+    EOF
+
+    file_name = "cloud-config.yaml"
+  }
+}

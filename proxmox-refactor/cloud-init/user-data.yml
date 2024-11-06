@@ -1,0 +1,17 @@
+package_upgrade: true
+packages:
+  - qemu-guest-agent
+
+users:
+  - name: user
+    passwd: user
+    groups: [adm, cdrom, dip, plugdev, lxd, sudo]
+    lock-passwd: false
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+
+power_state:
+    delay: now
+    mode: reboot
+    message: Rebooting after cloud-init completion
+    condition: true
