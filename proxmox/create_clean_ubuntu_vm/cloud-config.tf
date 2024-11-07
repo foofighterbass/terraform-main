@@ -13,7 +13,7 @@ users:
     shell: /bin/bash
     lock-passwd: false
     ssh_pwauth: True
-    sudo: ALL=(ALL) NOPASSWD:ALL
+    sudo: ALL=(ALL) NOPASSWDALL
     groups: users, admin
 runcmd:
     - echo "PermitRootLogin yes" >> /etc/ssh/sshd_config

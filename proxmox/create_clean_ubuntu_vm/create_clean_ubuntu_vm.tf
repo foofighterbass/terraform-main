@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    proxmox = {
-      source  = "bpg/proxmox"
-      version = "0.66.3"
-    }
-  }
-}
-
 resource "proxmox_virtual_environment_vm" "ubuntu_cloud_base" {
   name      = "ubuntu"
   node_name = var.vm_node_name
@@ -49,7 +40,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_cloud_base" {
   disk {
     datastore_id = var.vm_datastore_id
     file_id      = var.vm_disk_iso_file_id
-    interface    = var.vm_network_device_model
+    interface    = "virtio0"
     iothread     = true
     discard      = "on"
     size         = var.vm_disk_size
