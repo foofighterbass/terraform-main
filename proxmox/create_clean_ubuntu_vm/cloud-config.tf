@@ -1,15 +1,15 @@
 resource "proxmox_virtual_environment_file" "cloud_config" {
   content_type = "snippets"
   datastore_id = "local"
-  node_name    = "bn-1"
+  node_name    = var.vm_node_name
 
   source_raw {
     data = <<-EOF
     #cloud-config
 users:
   - default
-  - name: kim
-    passwd: "$6$kW4vfBM9kGgq4hr$TFtHW7.3jOECR9UCBuw9NrdSMJETzSVoNQGcVv2y.RqRUzWDEtYhYRkGvIpB6ml1fh/fZEVIgKbSXI9L1B6xF."
+  - name: ${var.vm_user}
+    passwd: ${var.vm_password}
     shell: /bin/bash
     lock-passwd: false
     ssh_pwauth: True

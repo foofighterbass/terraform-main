@@ -78,3 +78,16 @@ variable "vm_disk_size" {
   type        = number
   description = ""
 }
+
+variable "vm_password" {
+  type        = string
+  description = ""
+}
+
+variable "vm_user" {
+  type        = string
+  description = ""
+}
+
+
+

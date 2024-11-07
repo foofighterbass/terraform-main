@@ -14,3 +14,7 @@ vm_network_device_bridge = "vmbr0"
 vm_network_device_model = "virtio"
 vm_disk_iso_file_id = "local:iso/ubuntu_cloud_image_22_04_lts.img"
 vm_disk_size = 20
+vm_user = "kim"
+vm_password = "$6$kW4vfBM9kGgq4hr$TFtHW7.3jOECR9UCBuw9NrdSMJETzSVoNQGcVv2y.RqRUzWDEtYhYRkGvIpB6ml1fh/fZEVIgKbSXI9L1B6xF."
+
+
