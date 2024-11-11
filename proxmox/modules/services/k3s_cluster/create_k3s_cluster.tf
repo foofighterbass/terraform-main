@@ -1,14 +1,3 @@
-variable "node_names" {
-  description = "list of the resource group names"
-  type        = list(string)
-  default     = ["bn-1", "bn-2"]
-}
-
-variable "master_node" {
-  type    = string
-  default = "bn-2"
-}
-
 data "json" "vms" {
   filename = "k8s_vms_config.json"
 }
@@ -22,19 +11,23 @@ variable "k8s_vms" {
       address = string
       gateway = string
     })
+    vm_disk_size = number
+    vm_disk_iso_file_id = string
+    vm_network_device_model = string
+    vm_network_device_bridge = string
+    vm_memory_amount = number
+    vm_cpu_sockets = number
+    vm_cpu_cores = number
+    dns_servers = list(string)
+    vm_datastore_id = string
+    
   }))
   default = jsondecode(data.json.vms)
 }
 
 resource "proxmox_virtual_environment_vm" "k8s_workers" {
 
-  for_each  = toset(var.node_names)
-  node_name = each.value
-  name      = "k8s-${node_name}-worker"
-
-  initialization {
-    user_data_file_id = node_name == var.master_node ? proxmox_virtual_environment_file.cloud_config2.id : proxmox_virtual_environment_file.cloud_config1.id
-  }
-
+    for_each = var.k8s_vms
+    node_name = each.value.node_name
 
 }
