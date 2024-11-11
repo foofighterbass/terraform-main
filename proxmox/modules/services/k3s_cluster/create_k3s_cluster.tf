@@ -1,148 +1,40 @@
-resource "proxmox_virtual_environment_vm" "k8s_cp_01" {
-  name      = "k8s-cp-01"
-  node_name = "bn-2"
-
-  initialization {
-
-    datastore_id      = var.vm_datastore_id
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config2.id
-
-    dns {
-      servers = [var.vm_dns_server_1, var.vm_dns_server_2]
-    }
-
-    ip_config {
-      ipv4 {
-        address = "192.168.0.97/24"
-        gateway = var.vm_ipv4_gateway
-      }
-    }
-  }
-
-  cpu {
-    cores        = 2
-    sockets      = 1
-    architecture = "x86_64"
-    type         = "host"
-  }
-
-  memory {
-    dedicated = 6144
-  }
-
-  network_device {
-    bridge = var.vm_network_device_bridge
-    model  = var.vm_network_device_model
-  }
-
-
-
-  disk {
-    datastore_id = var.vm_datastore_id
-    file_id      = var.vm_disk_iso_file_id
-    interface    = "virtio0"
-    iothread     = true
-    discard      = "on"
-    size         = var.vm_disk_size
-  }
+variable "node_names" {
+  description = "list of the resource group names"
+  type        = list(string)
+  default     = ["bn-1", "bn-2"]
 }
 
-
-resource "proxmox_virtual_environment_vm" "k8s_worker_01" {
-  name      = "k8s-worker-01"
-  node_name = "bn-1"
-
-  initialization {
-
-    datastore_id      = var.vm_datastore_id
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config1.id
-
-    dns {
-      servers = [var.vm_dns_server_1, var.vm_dns_server_2]
-    }
-
-    ip_config {
-      ipv4 {
-        address = "192.168.0.98/24"
-        gateway = var.vm_ipv4_gateway
-      }
-    }
-  }
-
-  cpu {
-    cores        = 1
-    sockets      = 1
-    architecture = "x86_64"
-    type         = "host"
-  }
-
-  memory {
-    dedicated = 2048
-  }
-
-  network_device {
-    bridge = var.vm_network_device_bridge
-    model  = var.vm_network_device_model
-  }
-
-
-
-  disk {
-    datastore_id = var.vm_datastore_id
-    file_id      = var.vm_disk_iso_file_id
-    interface    = "virtio0"
-    iothread     = true
-    discard      = "on"
-    size         = var.vm_disk_size
-  }
+variable "master_node" {
+  type    = string
+  default = "bn-2"
 }
 
+data "json" "vms" {
+  filename = "k8s_vms_config.json"
+}
 
-resource "proxmox_virtual_environment_vm" "k8s_worker_02" {
-  name      = "k8s-worker-02"
-  node_name = "bn-2"
+variable "k8s_vms" {
+  type = map(object({
+    name         = string
+    node_name    = string
+    datastore_id = string
+    network = object({
+      address = string
+      gateway = string
+    })
+  }))
+  default = jsondecode(data.json.vms)
+}
+
+resource "proxmox_virtual_environment_vm" "k8s_workers" {
+
+  for_each  = toset(var.node_names)
+  node_name = each.value
+  name      = "k8s-${node_name}-worker"
 
   initialization {
-
-    datastore_id      = var.vm_datastore_id
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config2.id
-
-    dns {
-      servers = [var.vm_dns_server_1, var.vm_dns_server_2]
-    }
-
-    ip_config {
-      ipv4 {
-        address = "192.168.0.99/24"
-        gateway = var.vm_ipv4_gateway
-      }
-    }
-  }
-
-  cpu {
-    cores        = 1
-    sockets      = 1
-    architecture = "x86_64"
-    type         = "host"
-  }
-
-  memory {
-    dedicated = 2048
-  }
-
-  network_device {
-    bridge = var.vm_network_device_bridge
-    model  = var.vm_network_device_model
+    user_data_file_id = node_name == var.master_node ? proxmox_virtual_environment_file.cloud_config2.id : proxmox_virtual_environment_file.cloud_config1.id
   }
 
 
-
-  disk {
-    datastore_id = var.vm_datastore_id
-    file_id      = var.vm_disk_iso_file_id
-    interface    = "virtio0"
-    iothread     = true
-    discard      = "on"
-    size         = var.vm_disk_size
-  }
 }

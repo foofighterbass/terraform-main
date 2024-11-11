@@ -14,7 +14,9 @@ provider "proxmox" {
   insecure = true
 }
 
+
 module "k3s_cluster" {
+    node_names = ["bn-1", "bn-2"]
   source                   = "../../../modules/services/k3s_cluster"
   proxmox_endpoint         = "https://192.168.0.4:8006/"
   proxmox_username         = "root@pam"
