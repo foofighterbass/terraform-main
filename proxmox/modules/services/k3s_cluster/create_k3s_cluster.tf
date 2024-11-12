@@ -1,8 +1,4 @@
-locals {
-  json_data = jsondecode(file("${path.module}/k8s_vms_config.json"))
-}
-
-/* variable "k8s_vms" {
+variable "config" {
   type = map(object({
     name         = string
     node_name    = string
@@ -20,13 +16,15 @@ locals {
     vm_cpu_cores             = number
     dns_servers              = list(string)
     vm_datastore_id          = string
+    is_master                = string
   }))
-} */
+}
 
 resource "proxmox_virtual_environment_vm" "k8s_workers" {
 
-  for_each  = local.json_data
+  for_each  = var.config
   node_name = each.value.node_name
+  name = each.value.is_master == "true" ? "k8s-master-${each.value.node_name}" : "k8s-worker-${each.value.node_name}"
 
   initialization {
 

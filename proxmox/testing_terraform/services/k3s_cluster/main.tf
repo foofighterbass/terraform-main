@@ -14,6 +14,9 @@ provider "proxmox" {
   insecure = true
 }
 
+locals {
+  json_data = jsondecode(file("k8s_vms_config.json"))
+}
 
 module "k3s_cluster" {
   source           = "../../../modules/services/k3s_cluster"
@@ -22,5 +25,6 @@ module "k3s_cluster" {
   proxmox_password = "proxmoxpass"
   vm_user          = "kim"
   vm_password      = "$6$kW4vfBM9kGgq4hr$TFtHW7.3jOECR9UCBuw9NrdSMJETzSVoNQGcVv2y.RqRUzWDEtYhYRkGvIpB6ml1fh/fZEVIgKbSXI9L1B6xF."
+      config = local.json_data
 
 }

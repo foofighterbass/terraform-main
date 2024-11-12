@@ -18,10 +18,11 @@
             "192.168.0.1",
             "1.1.1.1"
         ],
-        "vm_datastore_id": "local-lvm"
+        "vm_datastore_id": "local-lvm",
+        "is_master": "false"
     },
     "vm2": {
-        "name": "vm1",
+        "name": "vm2",
         "node_name": "bn-2",
         "datastore_id": "local-lvm",
         "network": {
@@ -39,6 +40,29 @@
             "192.168.0.1",
             "1.1.1.1"
         ],
-        "vm_datastore_id": "local-lvm"
+        "vm_datastore_id": "local-lvm",
+        "is_master": "false"
+    },
+    "vm3": {
+        "name": "vm3",
+        "node_name": "bn-2",
+        "datastore_id": "local-lvm",
+        "network": {
+            "address": "192.168.0.97/24",
+            "gateway": "192.168.0.1"
+        },
+        "vm_disk_size": 20,
+        "vm_disk_iso_file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
+        "vm_network_device_model": "virtio",
+        "vm_network_device_bridge": "vmbr0",
+        "vm_memory_amount": 1024,
+        "vm_cpu_sockets": 1,
+        "vm_cpu_cores": 1,
+        "dns_servers": [
+            "192.168.0.1",
+            "1.1.1.1"
+        ],
+        "vm_datastore_id": "local-lvm",
+        "is_master": "true"
     }
 }
