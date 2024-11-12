@@ -4,7 +4,7 @@
         "node_name": "bn-1",
         "datastore_id": "local-lvm",
         "network": {
-            "address": "192.168.0.99",
+            "address": "192.168.0.99/24",
             "gateway": "192.168.0.1"
         },
         "vm_disk_size": 20,
@@ -22,10 +22,10 @@
     },
     "vm2": {
         "name": "vm1",
-        "node_name": "bn-1",
+        "node_name": "bn-2",
         "datastore_id": "local-lvm",
         "network": {
-            "address": "192.168.0.98",
+            "address": "192.168.0.98/24",
             "gateway": "192.168.0.1"
         },
         "vm_disk_size": 20,

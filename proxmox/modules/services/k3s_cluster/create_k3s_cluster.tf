@@ -1,4 +1,8 @@
-variable "k8s_vms" {
+locals {
+  json_data = jsondecode(file("${path.module}/k8s_vms_config.json"))
+}
+
+/* variable "k8s_vms" {
   type = map(object({
     name         = string
     node_name    = string
@@ -17,61 +21,17 @@ variable "k8s_vms" {
     dns_servers              = list(string)
     vm_datastore_id          = string
   }))
-  default = {
-    "vm1": {
-        "name": "vm1",
-        "node_name": "bn-1",
-        "datastore_id": "local-lvm",
-        "network": {
-            "address": "192.168.0.99/24",
-            "gateway": "192.168.0.1"
-        },
-        "vm_disk_size": 20,
-        "vm_disk_iso_file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
-        "vm_network_device_model": "virtio",
-        "vm_network_device_bridge": "vmbr0",
-        "vm_memory_amount": 1024,
-        "vm_cpu_sockets": 1,
-        "vm_cpu_cores": 1,
-        "dns_servers": [
-            "192.168.0.1",
-            "1.1.1.1"
-        ],
-        "vm_datastore_id": "local-lvm"
-    },
-    "vm2": {
-        "name": "vm1",
-        "node_name": "bn-2",
-        "datastore_id": "local-lvm",
-        "network": {
-            "address": "192.168.0.98/24",
-            "gateway": "192.168.0.1"
-        },
-        "vm_disk_size": 20,
-        "vm_disk_iso_file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
-        "vm_network_device_model": "virtio",
-        "vm_network_device_bridge": "vmbr0",
-        "vm_memory_amount": 1024,
-        "vm_cpu_sockets": 1,
-        "vm_cpu_cores": 1,
-        "dns_servers": [
-            "192.168.0.1",
-            "1.1.1.1"
-        ],
-        "vm_datastore_id": "local-lvm"
-    }
-}
-}
+} */
 
 resource "proxmox_virtual_environment_vm" "k8s_workers" {
 
-  for_each  = var.k8s_vms
+  for_each  = local.json_data
   node_name = each.value.node_name
 
   initialization {
 
     datastore_id      = each.value.datastore_id
-    user_data_file_id = each.value.node_name == "bn-1" ? proxmox_virtual_environment_file.cloud_config1.id : proxmox_virtual_environment_file.cloud_config2.id 
+    user_data_file_id = each.value.node_name == "bn-1" ? proxmox_virtual_environment_file.cloud_config1.id : proxmox_virtual_environment_file.cloud_config2.id
 
     dns {
       servers = each.value.dns_servers
