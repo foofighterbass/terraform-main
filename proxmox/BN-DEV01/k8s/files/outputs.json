@@ -1254,167 +1254,6 @@
             "file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
             "interface": "virtio0",
             "iothread": true,
-            "path_in_datastore": "vm-101-disk-0",
-            "replicate": true,
-            "serial": "",
-            "size": 20,
-            "speed": [],
-            "ssd": false
-          }
-        ],
-        "efi_disk": [],
-        "hook_script_file_id": null,
-        "hostpci": [],
-        "id": "101",
-        "initialization": [
-          {
-            "datastore_id": "local-lvm",
-            "dns": [],
-            "interface": "ide2",
-            "ip_config": [
-              {
-                "ipv4": [
-                  {
-                    "address": "dhcp",
-                    "gateway": ""
-                  }
-                ],
-                "ipv6": []
-              }
-            ],
-            "meta_data_file_id": "",
-            "network_data_file_id": "",
-            "type": "",
-            "upgrade": false,
-            "user_account": [],
-            "user_data_file_id": "local:snippets/cloud-config-vm1.yaml",
-            "vendor_data_file_id": ""
-          }
-        ],
-        "ipv4_addresses": [
-          [
-            "127.0.0.1"
-          ],
-          [
-            "192.168.0.32"
-          ]
-        ],
-        "ipv6_addresses": [
-          [
-            "::1"
-          ],
-          [
-            "fe80::be24:11ff:feec:e4cd"
-          ]
-        ],
-        "keyboard_layout": "en-us",
-        "kvm_arguments": "",
-        "mac_addresses": [
-          "00:00:00:00:00:00",
-          "BC:24:11:EC:E4:CD"
-        ],
-        "machine": "",
-        "memory": [
-          {
-            "dedicated": 1024,
-            "floating": 0,
-            "hugepages": "",
-            "keep_hugepages": false,
-            "shared": 0
-          }
-        ],
-        "migrate": false,
-        "name": "k8s-worker-bn-1",
-        "network_device": [
-          {
-            "bridge": "vmbr0",
-            "disconnected": false,
-            "enabled": true,
-            "firewall": false,
-            "mac_address": "BC:24:11:EC:E4:CD",
-            "model": "virtio",
-            "mtu": 0,
-            "queues": 0,
-            "rate_limit": 0,
-            "trunks": "",
-            "vlan_id": 0
-          }
-        ],
-        "network_interface_names": [
-          "lo",
-          "eth0"
-        ],
-        "node_name": "bn-1",
-        "numa": [],
-        "on_boot": true,
-        "operating_system": [],
-        "pool_id": null,
-        "protection": false,
-        "reboot": false,
-        "scsi_hardware": "virtio-scsi-pci",
-        "serial_device": [],
-        "smbios": [],
-        "started": true,
-        "startup": [],
-        "stop_on_destroy": false,
-        "tablet_device": true,
-        "tags": null,
-        "template": false,
-        "timeout_clone": 1800,
-        "timeout_create": 1800,
-        "timeout_migrate": 1800,
-        "timeout_move_disk": 1800,
-        "timeout_reboot": 1800,
-        "timeout_shutdown_vm": 1800,
-        "timeout_start_vm": 1800,
-        "timeout_stop_vm": 300,
-        "tpm_state": [],
-        "usb": [],
-        "vga": [],
-        "vm_id": 101,
-        "watchdog": []
-      },
-      {
-        "acpi": true,
-        "agent": [
-          {
-            "enabled": true,
-            "timeout": "15m",
-            "trim": false,
-            "type": "virtio"
-          }
-        ],
-        "audio_device": [],
-        "bios": "seabios",
-        "boot_order": null,
-        "cdrom": [],
-        "clone": [],
-        "cpu": [
-          {
-            "affinity": "",
-            "architecture": "x86_64",
-            "cores": 1,
-            "flags": null,
-            "hotplugged": 0,
-            "limit": 0,
-            "numa": false,
-            "sockets": 1,
-            "type": "host",
-            "units": 1024
-          }
-        ],
-        "description": "",
-        "disk": [
-          {
-            "aio": "io_uring",
-            "backup": true,
-            "cache": "none",
-            "datastore_id": "local-lvm",
-            "discard": "on",
-            "file_format": "raw",
-            "file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
-            "interface": "virtio0",
-            "iothread": true,
             "path_in_datastore": "vm-104-disk-0",
             "replicate": true,
             "serial": "",
@@ -1448,7 +1287,7 @@
             "type": "",
             "upgrade": false,
             "user_account": [],
-            "user_data_file_id": "local:snippets/cloud-config-vm2.yaml",
+            "user_data_file_id": "local:snippets/cloud-config-vm1.yaml",
             "vendor_data_file_id": ""
           }
         ],
@@ -1457,7 +1296,7 @@
             "127.0.0.1"
           ],
           [
-            "192.168.0.33"
+            "192.168.0.39"
           ]
         ],
         "ipv6_addresses": [
@@ -1465,14 +1304,14 @@
             "::1"
           ],
           [
-            "fe80::be24:11ff:fec4:da61"
+            "fe80::be24:11ff:fe71:cfd6"
           ]
         ],
         "keyboard_layout": "en-us",
         "kvm_arguments": "",
         "mac_addresses": [
           "00:00:00:00:00:00",
-          "BC:24:11:C4:DA:61"
+          "BC:24:11:71:CF:D6"
         ],
         "machine": "",
         "memory": [
@@ -1485,14 +1324,14 @@
           }
         ],
         "migrate": false,
-        "name": "k8s-worker-bn-2",
+        "name": "k8s-worker-1-bn-1",
         "network_device": [
           {
             "bridge": "vmbr0",
             "disconnected": false,
             "enabled": true,
             "firewall": false,
-            "mac_address": "BC:24:11:C4:DA:61",
+            "mac_address": "BC:24:11:71:CF:D6",
             "model": "virtio",
             "mtu": 0,
             "queues": 0,
@@ -1505,7 +1344,7 @@
           "lo",
           "eth0"
         ],
-        "node_name": "bn-2",
+        "node_name": "bn-1",
         "numa": [],
         "on_boot": true,
         "operating_system": [],
@@ -1609,7 +1448,7 @@
             "type": "",
             "upgrade": false,
             "user_account": [],
-            "user_data_file_id": "local:snippets/cloud-config-vm3.yaml",
+            "user_data_file_id": "local:snippets/cloud-config-vm2.yaml",
             "vendor_data_file_id": ""
           }
         ],
@@ -1618,7 +1457,7 @@
             "127.0.0.1"
           ],
           [
-            "192.168.0.34"
+            "192.168.0.41"
           ]
         ],
         "ipv6_addresses": [
@@ -1626,14 +1465,14 @@
             "::1"
           ],
           [
-            "fe80::be24:11ff:fe85:aef9"
+            "fe80::be24:11ff:fe2f:bee7"
           ]
         ],
         "keyboard_layout": "en-us",
         "kvm_arguments": "",
         "mac_addresses": [
           "00:00:00:00:00:00",
-          "BC:24:11:85:AE:F9"
+          "BC:24:11:2F:BE:E7"
         ],
         "machine": "",
         "memory": [
@@ -1646,14 +1485,14 @@
           }
         ],
         "migrate": false,
-        "name": "k8s-master-bn-2",
+        "name": "k8s-worker-2-bn-2",
         "network_device": [
           {
             "bridge": "vmbr0",
             "disconnected": false,
             "enabled": true,
             "firewall": false,
-            "mac_address": "BC:24:11:85:AE:F9",
+            "mac_address": "BC:24:11:2F:BE:E7",
             "model": "virtio",
             "mtu": 0,
             "queues": 0,
@@ -1694,6 +1533,167 @@
         "usb": [],
         "vga": [],
         "vm_id": 103,
+        "watchdog": []
+      },
+      {
+        "acpi": true,
+        "agent": [
+          {
+            "enabled": true,
+            "timeout": "15m",
+            "trim": false,
+            "type": "virtio"
+          }
+        ],
+        "audio_device": [],
+        "bios": "seabios",
+        "boot_order": null,
+        "cdrom": [],
+        "clone": [],
+        "cpu": [
+          {
+            "affinity": "",
+            "architecture": "x86_64",
+            "cores": 1,
+            "flags": null,
+            "hotplugged": 0,
+            "limit": 0,
+            "numa": false,
+            "sockets": 1,
+            "type": "host",
+            "units": 1024
+          }
+        ],
+        "description": "",
+        "disk": [
+          {
+            "aio": "io_uring",
+            "backup": true,
+            "cache": "none",
+            "datastore_id": "local-lvm",
+            "discard": "on",
+            "file_format": "raw",
+            "file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
+            "interface": "virtio0",
+            "iothread": true,
+            "path_in_datastore": "vm-101-disk-0",
+            "replicate": true,
+            "serial": "",
+            "size": 20,
+            "speed": [],
+            "ssd": false
+          }
+        ],
+        "efi_disk": [],
+        "hook_script_file_id": null,
+        "hostpci": [],
+        "id": "101",
+        "initialization": [
+          {
+            "datastore_id": "local-lvm",
+            "dns": [],
+            "interface": "ide2",
+            "ip_config": [
+              {
+                "ipv4": [
+                  {
+                    "address": "dhcp",
+                    "gateway": ""
+                  }
+                ],
+                "ipv6": []
+              }
+            ],
+            "meta_data_file_id": "",
+            "network_data_file_id": "",
+            "type": "",
+            "upgrade": false,
+            "user_account": [],
+            "user_data_file_id": "local:snippets/cloud-config-vm3.yaml",
+            "vendor_data_file_id": ""
+          }
+        ],
+        "ipv4_addresses": [
+          [
+            "127.0.0.1"
+          ],
+          [
+            "192.168.0.40"
+          ]
+        ],
+        "ipv6_addresses": [
+          [
+            "::1"
+          ],
+          [
+            "fe80::be24:11ff:fef2:c9b0"
+          ]
+        ],
+        "keyboard_layout": "en-us",
+        "kvm_arguments": "",
+        "mac_addresses": [
+          "00:00:00:00:00:00",
+          "BC:24:11:F2:C9:B0"
+        ],
+        "machine": "",
+        "memory": [
+          {
+            "dedicated": 1024,
+            "floating": 0,
+            "hugepages": "",
+            "keep_hugepages": false,
+            "shared": 0
+          }
+        ],
+        "migrate": false,
+        "name": "k8s-master-1-bn-2",
+        "network_device": [
+          {
+            "bridge": "vmbr0",
+            "disconnected": false,
+            "enabled": true,
+            "firewall": false,
+            "mac_address": "BC:24:11:F2:C9:B0",
+            "model": "virtio",
+            "mtu": 0,
+            "queues": 0,
+            "rate_limit": 0,
+            "trunks": "",
+            "vlan_id": 0
+          }
+        ],
+        "network_interface_names": [
+          "lo",
+          "eth0"
+        ],
+        "node_name": "bn-2",
+        "numa": [],
+        "on_boot": true,
+        "operating_system": [],
+        "pool_id": null,
+        "protection": false,
+        "reboot": false,
+        "scsi_hardware": "virtio-scsi-pci",
+        "serial_device": [],
+        "smbios": [],
+        "started": true,
+        "startup": [],
+        "stop_on_destroy": false,
+        "tablet_device": true,
+        "tags": null,
+        "template": false,
+        "timeout_clone": 1800,
+        "timeout_create": 1800,
+        "timeout_migrate": 1800,
+        "timeout_move_disk": 1800,
+        "timeout_reboot": 1800,
+        "timeout_shutdown_vm": 1800,
+        "timeout_start_vm": 1800,
+        "timeout_stop_vm": 300,
+        "tpm_state": [],
+        "usb": [],
+        "vga": [],
+        "vm_id": 101,
         "watchdog": []
       }
     ]

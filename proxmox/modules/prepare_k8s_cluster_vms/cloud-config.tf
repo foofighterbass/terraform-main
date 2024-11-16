@@ -16,7 +16,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
       ssh_pwauth: True
       sudo: ALL=(ALL) NOPASSWDALL
       groups: users, admin
-    hostname: ${each.value.name}
+    hostname: ${each.value.name}_${each.value.node_name}
     runcmd:
     - sudo apt update
     - sudo apt install -y qemu-guest-agent net-tools
@@ -30,6 +30,6 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
     - sudo systemctl restart sshd
     EOF
 
-    file_name = "cloud-config-${each.key}.yaml"
+    file_name = "cloud-config-${each.value.name}.yaml"
   }
 }

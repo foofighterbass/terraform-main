@@ -1,6 +1,6 @@
 {
     "vm1": {
-        "name": "vm1",
+        "name": "k8s-worker-1",
         "node_name": "bn-1",
         "datastore_id": "local-lvm",
         "network": {
@@ -25,7 +25,7 @@
         "vm_ssh_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICb8NfktVGiiex39fjLsZxZZVAfAgkloRFnDnoWgMyM1 gladiator@nikolai.local"
     },
     "vm2": {
-        "name": "vm2",
+        "name": "k8s-worker-2",
         "node_name": "bn-2",
         "datastore_id": "local-lvm",
         "network": {
@@ -50,7 +50,7 @@
         "vm_ssh_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICb8NfktVGiiex39fjLsZxZZVAfAgkloRFnDnoWgMyM1 gladiator@nikolai.local"
     },
     "vm3": {
-        "name": "vm3",
+        "name": "k8s-master-1",
         "node_name": "bn-2",
         "datastore_id": "local-lvm",
         "network": {

@@ -14,7 +14,7 @@ provider "proxmox" {
   insecure = true
 }
 
-module "k3s_cluster" {
+module "k8s_cluster" {
   source   = "../../modules/prepare_k8s_cluster_vms"
 
   config = local.json_data

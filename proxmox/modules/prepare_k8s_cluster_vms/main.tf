@@ -7,10 +7,10 @@ terraform {
   }
 }
 
-resource "proxmox_virtual_environment_vm" "k8s_workers" {
+resource "proxmox_virtual_environment_vm" "k8s" {
   for_each  = var.config
   node_name = each.value.node_name
-  name      = each.value.is_master == "true" ? "k8s-master-${each.value.node_name}" : "k8s-worker-${each.value.node_name}"
+  name      = "${each.value.name}"
 
   agent {
     enabled = true
