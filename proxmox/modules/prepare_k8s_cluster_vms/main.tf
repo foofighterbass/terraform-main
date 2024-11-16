@@ -13,7 +13,6 @@ resource "proxmox_virtual_environment_vm" "k8s_workers" {
   name      = each.value.is_master == "true" ? "k8s-master-${each.value.node_name}" : "k8s-worker-${each.value.node_name}"
 
   agent {
-    # read 'Qemu guest agent' section, change to true only when ready
     enabled = true
   }
 

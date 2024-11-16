@@ -22,21 +22,3 @@ variable "config" {
     vm_ssh_key               = string
   }))
 }
-
-variable "node_config" {
-  type = map(object({
-    user     = string
-    password = string
-  }))
-  default = {
-    bn-1 : {
-      user     = "user"
-      password = "password"
-    }
-    bn-2 : {
-      user     = "user"
-      password = "password"
-    }
-  }
-}
-

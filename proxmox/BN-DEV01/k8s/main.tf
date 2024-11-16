@@ -14,21 +14,14 @@ provider "proxmox" {
   insecure = true
 }
 
+
+
 locals {
-  json_data = jsondecode(file("k8s_vms_config.json"))
+  json_data = jsondecode(file("./files//k8s_vms_config.json"))
 }
 
 module "k3s_cluster" {
-  source   = "../../../modules/services/k3s_cluster"
+  source   = "../../modules/prepare_k8s_cluster_vms"
 
   config = local.json_data
 }
-
-output "ipv4" {
-  value = module.k3s_cluster.public_ipv4
-  sensitive = true
-}
-
-/* output "show_vm" {
-  value = module.k3s_cluster.show_vm
-} */

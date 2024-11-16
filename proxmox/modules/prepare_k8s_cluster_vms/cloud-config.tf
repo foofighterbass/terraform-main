@@ -16,6 +16,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
       ssh_pwauth: True
       sudo: ALL=(ALL) NOPASSWDALL
       groups: users, admin
+    hostname: ${each.value.name}
     runcmd:
     - sudo apt update
     - sudo apt install -y qemu-guest-agent net-tools
