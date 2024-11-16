@@ -8,16 +8,10 @@ terraform {
 }
 
 provider "proxmox" {
-  endpoint = "https://192.168.0.4:8006/"
-  username = "root@pam"
-  password = "proxmoxpass"
+  endpoint = var.proxmox_path
+  username = var.proxmox_user
+  password = var.proxmox_pass
   insecure = true
-}
-
-
-
-locals {
-  json_data = jsondecode(file("./files//k8s_vms_config.json"))
 }
 
 module "k3s_cluster" {
