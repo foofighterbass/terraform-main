@@ -1,15 +1,16 @@
-resource "proxmox_virtual_environment_file" "cloud_config2" {
+resource "proxmox_virtual_environment_file" "cloud_config" {
+  for_each     = var.config
   content_type = "snippets"
   datastore_id = "local"
-  node_name    = "bn-2"
+  node_name    = each.value.node_name
 
   source_raw {
     data = <<-EOF
     #cloud-config
 users:
   - default
-  - name: ${var.vm_user}
-    passwd: ${var.vm_password}
+  - name: ${each.value.vm_user}
+    passwd: ${each.value.vm_password}
     shell: /bin/bash
     lock-passwd: false
     ssh_pwauth: True
@@ -23,6 +24,6 @@ runcmd:
     - sudo systemctl restart sshd
     EOF
 
-    file_name = "cloud-config.yaml"
+    file_name = "cloud-config-${each.key}.yaml"
   }
 }
