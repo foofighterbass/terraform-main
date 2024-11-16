@@ -14,32 +14,29 @@ resource "proxmox_virtual_environment_vm" "k8s_workers" {
 
   agent {
     # read 'Qemu guest agent' section, change to true only when ready
-    enabled = false
+    enabled = true
   }
 
   initialization {
-
-    /*     user_account {
-      keys     = [trimspace(each.value.vm_ssh_key)]
-      password = each.value.vm_password
-      username = each.value.vm_user
-    } */
-
     datastore_id = each.value.datastore_id
-
-    /*     dns {
-      servers = each.value.dns_servers
-    } */
-
     ip_config {
-
       ipv4 {
         address = "dhcp"
       }
 
+      /*     user_account {
+        keys     = [trimspace(each.value.vm_ssh_key)]
+        password = each.value.vm_password
+        username = each.value.vm_user
+      } */
+
       /*       ipv4 {
         address = each.value.network.address == "" ? "dhcp" : each.value.network.address
         #gateway = each.value.network.gateway
+      } */
+
+      /*     dns {
+      servers = each.value.dns_servers
       } */
     }
 
