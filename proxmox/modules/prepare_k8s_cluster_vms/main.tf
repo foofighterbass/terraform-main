@@ -20,7 +20,8 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     datastore_id = each.value.datastore_id
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = each.value.network.address == "" ? "dhcp" : each.value.network.address
+        gateway = each.value.network.gateway
       }
 
       /*     user_account {

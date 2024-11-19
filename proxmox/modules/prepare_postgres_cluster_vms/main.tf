@@ -10,7 +10,7 @@ terraform {
 resource "proxmox_virtual_environment_vm" "postgres" {
   for_each  = var.config
   node_name = each.value.node_name
-  name      = "${each.value.name}"
+  name      = each.value.name
 
   agent {
     enabled = true
@@ -19,9 +19,9 @@ resource "proxmox_virtual_environment_vm" "postgres" {
   initialization {
     datastore_id = each.value.datastore_id
     ip_config {
-      ipv4 {
+      /*       ipv4 {
         address = "dhcp"
-      }
+      } */
 
       /*     user_account {
         keys     = [trimspace(each.value.vm_ssh_key)]
@@ -29,10 +29,13 @@ resource "proxmox_virtual_environment_vm" "postgres" {
         username = each.value.vm_user
       } */
 
-      /*       ipv4 {
+
+     # == "" ? "dhcp" : each.value.network.address
+
+      ipv4 {
         address = each.value.network.address == "" ? "dhcp" : each.value.network.address
-        #gateway = each.value.network.gateway
-      } */
+        gateway = each.value.network.gateway
+      }
 
       /*     dns {
       servers = each.value.dns_servers
