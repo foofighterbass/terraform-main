@@ -14,6 +14,6 @@ variable "proxmox_pass" {
 }
 
 locals {
-  json_data = jsondecode(file("./files//pg_vms_config.json"))
+  json_data = jsondecode(file("./files//vms_config.json"))
 }
 

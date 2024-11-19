@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-resource "proxmox_virtual_environment_vm" "postgres" {
+resource "proxmox_virtual_environment_vm" "base_vms" {
   for_each  = var.config
   node_name = each.value.node_name
   name      = each.value.name
@@ -19,29 +19,13 @@ resource "proxmox_virtual_environment_vm" "postgres" {
   initialization {
     datastore_id = each.value.datastore_id
     ip_config {
-      /*       ipv4 {
-        address = "dhcp"
-      } */
-
-      /*     user_account {
-        keys     = [trimspace(each.value.vm_ssh_key)]
-        password = each.value.vm_password
-        username = each.value.vm_user
-      } */
-
-
-     # == "" ? "dhcp" : each.value.network.address
 
       ipv4 {
         address = each.value.network.address == "" ? "dhcp" : each.value.network.address
         gateway = each.value.network.gateway
       }
 
-      /*     dns {
-      servers = each.value.dns_servers
-      } */
     }
-
 
     user_data_file_id = proxmox_virtual_environment_file.cloud_config[each.key].id
   }
@@ -62,8 +46,6 @@ resource "proxmox_virtual_environment_vm" "postgres" {
     model  = each.value.vm_network_device_model
   }
 
-
-
   disk {
     datastore_id = each.value.vm_datastore_id
     file_id      = each.value.vm_disk_iso_file_id
@@ -74,5 +56,3 @@ resource "proxmox_virtual_environment_vm" "postgres" {
   }
 
 }
-
-
