@@ -14,7 +14,7 @@ variable "config" {
     vm_memory_amount         = number
     vm_cpu_sockets           = number
     vm_cpu_cores             = number
-    dns_servers              = list(string)
+    dns_server               = string
     vm_datastore_id          = string
     is_master                = string
     vm_user                  = string

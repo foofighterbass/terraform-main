@@ -30,6 +30,9 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
     - sudo systemctl restart sshd
     EOF
 
+    # - echo "DNS=${each.value.dns_server} 1.1.1.1" >> /etc/systemd/resolved.conf
+    # - sudo systemctl restart systemd-resolved
+
     file_name = "cloud-config-${each.value.name}.yaml"
   }
 }
