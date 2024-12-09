@@ -11,7 +11,7 @@
         "vm_disk_iso_file_id": "local:iso/ubuntu_cloud_image_22_04_lts.img",
         "vm_network_device_model": "virtio",
         "vm_network_device_bridge": "vmbr0",
-        "vm_memory_amount": 2048,
+        "vm_memory_amount": 1024,
         "vm_cpu_sockets": 1,
         "vm_cpu_cores": 1,
         "dns_server": "",
