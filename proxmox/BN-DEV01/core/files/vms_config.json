@@ -45,10 +45,10 @@
     },
     "vm3": {
         "name": "postgres-main",
-        "node_name": "bn-1",
+        "node_name": "bn-2",
         "datastore_id": "local-lvm",
         "network": {
-            "address": "192.168.0.60/24",
+            "address": "192.168.0.70/24",
             "gateway": "192.168.0.1"
         },
         "vm_disk_size": 20,
@@ -66,11 +66,11 @@
         "vm_ssh_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICb8NfktVGiiex39fjLsZxZZVAfAgkloRFnDnoWgMyM1 gladiator@nikolai.local"
     },
     "vm4": {
-        "name": "registry",
-        "node_name": "bn-1",
+        "name": "storage",
+        "node_name": "bn-2",
         "datastore_id": "local-lvm",
         "network": {
-            "address": "192.168.0.60/24",
+            "address": "192.168.0.71/24",
             "gateway": "192.168.0.1"
         },
         "vm_disk_size": 20,
