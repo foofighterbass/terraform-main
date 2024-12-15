@@ -28,6 +28,9 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
     - echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
     - sudo rm -rf /etc/ssh/sshd_config.d/
     - sudo systemctl restart sshd
+    - sudo mkdir /kim01
+    - sudo chown kim kim01
+    - sudo usermod -md /kim01 kim 
     EOF
 
     # - echo "DNS=${each.value.dns_server} 1.1.1.1" >> /etc/systemd/resolved.conf
