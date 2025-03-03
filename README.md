@@ -1,1 +1,2 @@
-hehe
+terraform output -json > ./files/outputs.json
+
